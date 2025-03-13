@@ -1,0 +1,44 @@
+{
+  "cookiecutter": {
+    "Introduction": "",
+    "type": "lib",
+    "name": "client-weather",
+    "description": "Weather API Client for Python",
+    "title": "Frequenz Weather API Client",
+    "keywords": "(comma separated: 'frequenz', <type> and <name> are included automatically)",
+    "github_org": "frequenz-floss",
+    "license": "MIT",
+    "author_name": "Frequenz Energy-as-a-Service GmbH",
+    "author_email": "floss@frequenz.com",
+    "python_package": "frequenz.client.weather",
+    "pypi_package_name": "frequenz-client-weather",
+    "github_repo_name": "frequenz-client-weather-python",
+    "default_codeowners": "@frequenz-floss/api-weather-team",
+    "_template": "gh:frequenz-floss/frequenz-repo-config-python"
+  },
+  "_cookiecutter": {
+    "Introduction": "{{cookiecutter | introduction}}",
+    "type": [
+      "actor",
+      "api",
+      "app",
+      "lib",
+      "model"
+    ],
+    "name": null,
+    "description": null,
+    "title": "{{cookiecutter | proj_title}}",
+    "keywords": "(comma separated: 'frequenz', <type> and <name> are included automatically)",
+    "github_org": "frequenz-floss",
+    "license": [
+      "MIT",
+      "Proprietary"
+    ],
+    "author_name": "Frequenz Energy-as-a-Service GmbH",
+    "author_email": "floss@frequenz.com",
+    "python_package": "{{cookiecutter | python_package}}",
+    "pypi_package_name": "{{cookiecutter | pypi_package_name}}",
+    "github_repo_name": "{{cookiecutter | github_repo_name}}",
+    "default_codeowners": "(like @some-org/some-team; defaults to a team based on the repo type)"
+  }
+}
