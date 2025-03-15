@@ -148,3 +148,6 @@ cython_debug/
 # Automatically generated documentation
 docs/reference/
 site/
+
+# MacOS custom attributes file
+.DS_Store
