@@ -381,6 +381,21 @@ class Forecasts:
 
         return resampled
 
+    def flatten(self) -> list[ForecastData]:
+        """Flatten forecast data into a list of ForecastData tuples.
+
+        Returns:
+            List of ForecastData tuples containing the flattened forecast data.
+
+        Raises:
+            ValueError: If the forecasts data is missing or invalid.
+        """
+        # check for empty forecasts data
+        if not self._forecasts_pb.location_forecasts:
+            raise ValueError("Forecast data is missing or invalid.")
+
+        return flatten(list(self._forecasts_pb.location_forecasts))
+
 
 ForecastData = namedtuple(
     "ForecastData",
