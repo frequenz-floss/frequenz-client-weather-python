@@ -304,7 +304,7 @@ class Forecasts:
 
         return array
 
-    # pylint: disable=too-many-arguments
+    # pylint: disable= too-many-arguments, too-many-positional-arguments
     def upsample_vlf(
         self,
         array: np.ndarray[

@@ -22,7 +22,7 @@ EMPTY_PAGE_TOKEN = ""
 class HistoricalForecastIterator(AsyncIterator[HistoricalForecasts]):
     """An iterator over historical weather forecasts."""
 
-    def __init__(  # pylint: disable=too-many-arguments
+    def __init__(  # pylint: disable=too-many-arguments, too-many-positional-arguments
         self,
         stub: weather_pb2_grpc.WeatherForecastServiceAsyncStub,
         locations: list[Location],
