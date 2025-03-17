@@ -27,8 +27,17 @@ classifiers = [
 requires-python = ">= 3.11, < 4"
 dependencies = [
   "typing-extensions >= 4.12.2, < 5",
+  "numpy >= 1.24.2, < 2",
+  "frequenz-api-common >= 0.6.0, < 0.7.0",
+  "googleapis-common-protos >= 1.56.4, < 2",
+  "frequenz-channels >= 1.6.1, < 2",
+  "frequenz-client-base >= 0.9.0, < 0.10",
+  "frequenz-api-weather >= 0.12.0, < 0.13.0",
 ]
 dynamic = ["version"]
+
+[project.scripts]
+weather-cli = "frequenz.client.weather.cli.__main__:main"
 
 [[project.authors]]
 name = "Frequenz Energy-as-a-Service GmbH"
@@ -58,6 +67,7 @@ dev-mkdocs = [
 dev-mypy = [
   "mypy == 1.9.0",
   "types-Markdown == 3.7.0.20241204",
+  "types-protobuf == 5.29.1.20250208",
   # For checking the noxfile, docs/ script, and tests
   "frequenz-client-weather[dev-mkdocs,dev-noxfile,dev-pytest]",
 ]
