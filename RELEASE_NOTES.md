@@ -10,6 +10,7 @@
 
 ## New Features
 
+* Add the client and cli from[frequenz-api-weather](https://github.com/frequenz-floss/frequenz-api-weather).
 <!-- Here goes the main new features and examples or instructions on how to use them -->
 
 ## Bug Fixes
