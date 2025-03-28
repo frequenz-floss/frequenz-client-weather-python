@@ -29,9 +29,13 @@ check out the [Contributing Guide](CONTRIBUTING.md).
 pip install frequenz-client-weather
 ```
 
+### Available Features
+
+The available features are listed [here](https://github.com/frequenz-floss/frequenz-api-weather/blob/v0.x.x/proto/frequenz/api/weather/weather.proto#L42).
+
 ### Initialize the client
 
-The Client can optionally be initialized with keep alive options.
+The Client can optionally be initialized with keep alive.
 
 ```python
 from frequenz.client.weather import Client
@@ -57,40 +61,54 @@ client = Client(
 
 ```python
 from datetime import datetime
+import pandas as pd
 from frequenz.client.weather._types import ForecastFeature, Location
 
-location = [Location(latitude=46.2276, longitude=15.2137, country_code="DE")]
+# Define a list of locations, features and a time range to request historical forecasts for
+locations = [Location(latitude=46.2276, longitude=15.2137, country_code="DE")]
 features = [ForecastFeature.TEMPERATURE_2_METRE, ForecastFeature.V_WIND_COMPONENT_10_METRE]
 start = datetime(2024, 1, 1)
 end = datetime(2024, 1, 31)
 
-location_forecast_iterator = client.hist_forecast_iterator(
+forecast_iterator = client.hist_forecast_iterator(
     features=features, locations=locations, start=start, end=end
 )
 
-async for forecasts in location_forecast_iterator:
-    print(forecasts)
+# Collect and flatten forecasts
+flat_forecasts = [f.flatten() async for f in forecast_iterator]
+forecast_records = [record for batch in flat_forecasts for record in batch]
+
+# E.g. convert to DataFrame and sort
+forecast_df = pd.DataFrame(forecast_records).sort_values(["creation_ts", "validity_ts", "latitude", "longitude"])
+print(forecast_df)
 ```
 
 ### Get live weather forecast
 
 ```python
-from datetime import datetime
+import pandas as pd
 from frequenz.client.weather._types import ForecastFeature, Location
 
-location = [Location(latitude=46.2276, longitude=15.2137, country_code="DE")]
+# Define a list of locations and features to request live forecasts for
+locations = [Location(latitude=46.2276, longitude=15.2137, country_code="DE")]
 features = [ForecastFeature.TEMPERATURE_2_METRE, ForecastFeature.V_WIND_COMPONENT_10_METRE]
 
-rx = await client.stream_live_forecast(
-    locations=[location],
-    features=feature_names,
+# Returns a Receiver object that can be iterated over asynchronously
+stream = await client.stream_live_forecast(
+    locations=locations,
+    features=features,
 )
 
-while True:
-    forecast = await rx.__anext__()
-    print(forecasts)
-```
+# Process incoming forecasts as they arrive
+async for forecast in stream:
+    # The to_ndarray_vlf method converts the forecast data to a 3D numpy array,
+    # where the dimensions correspond to validity_ts, location, feature
+    # The method can also take filters for validity_ts, locations and features
+    # E.g. filter the forecast for wind features
+    wind_forecast = forecast.to_ndarray_vlf(features=[ForecastFeature.V_WIND_COMPONENT_10_METRE])
+    print(wind_forecast)
 
+```
 ## Command Line Interface
 
 The package also provides a command line interface to get weather forecast data.
@@ -101,10 +119,11 @@ Use `-h` to see the available options.
 ```bash
 weather-cli \
     --url <service-address> \
-    --location <latitude,longitude> \       # e.g. "40, 15"
-    --feature <feature-name> \              # e.g. TEMPERATURE_2_METRE
-    --start <start-datetime> \              # e.g. 2024-03-14
-    --end <end-datetime>                    # e.g. 2024-03-15
+    --location "40,15" \
+    --feature U_WIND_COMPONENT_100_METRE \
+    --start 2024-03-14 \
+    --end 2024-03-15 \
+    --mode historical
 ```
 
 ### Get live weather forecast
@@ -112,7 +131,8 @@ weather-cli \
 ```bash
 weather-cli \
     --url <service-address> \
-    --location <latitude,longitude> \       # e.g. "40, 15"
-    --feature <feature-name> \              # e.g. TEMPERATURE_2_METRE
+    --location "40, 15" \
+    --feature TEMPERATURE_2_METRE \
+    --mode live
 ```
 
