@@ -358,7 +358,7 @@ class Forecasts:
         # Handle non-solar features with direct interpolation
         if other_idxs:
             resampled[..., other_idxs] = np.apply_along_axis(
-                lambda x: np.interp(tts, vts, x),
+                lambda x: np.interp(tts, vts, x, np.nan, np.nan),
                 axis=0,
                 arr=array[..., other_idxs],
             )
@@ -372,8 +372,8 @@ class Forecasts:
                     tts,
                     shifted_vts,
                     x,
-                    left=x[0],
-                    right=x[-1],
+                    np.nan,
+                    np.nan,
                 ),
                 axis=0,
                 arr=array[..., solar_idxs],
