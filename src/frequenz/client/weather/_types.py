@@ -151,6 +151,83 @@ class Forecasts:
         """
         return cls(_forecasts_pb=forecasts)
 
+    def to_resampled_ndarray(
+        self,
+        validity_times: list[dt.datetime],
+        locations: list[Location] | None = None,
+        features: list[ForecastFeature] | None = None,
+        solar_offset_sec: int = 1800,
+    ) -> np.ndarray[
+        # the shape is known to be 3 dimensional, but the length of each dimension is
+        # not fixed, so we use typing.Any, instead of the usual const generic
+        # parameters.
+        tuple[typing.Any, typing.Any, typing.Any],
+        np.dtype[np.float64],
+    ]:
+        """Convert the forecast to a numpy array and resample to the specified validity_times.
+
+        Args:
+            validity_times: The validity times to resample to.
+            locations: The locations to filter by.
+            features: The features to filter by.
+            solar_offset_sec: Time offset in seconds to shift solar forecasts
+
+        Returns:
+            Numpy array of shape (num_validity_times, num_locations, num_features)
+        """
+        original_validity_times = self._get_validity_times()
+        array = self.to_ndarray_vlf(None, locations, features)
+        if not features:
+            features = self._get_features()
+
+        resampled_array = self.upsample_vlf(
+            array,
+            original_validity_times,
+            validity_times,
+            features,
+            solar_offset_sec,
+        )
+
+        return resampled_array
+
+    def _get_features(self) -> list[ForecastFeature]:
+        """Return the available features in the Forecast.
+
+        Returns:
+            List of forecast features.
+        """
+        if not self._forecasts_pb.location_forecasts:
+            return []
+        # Features need to only be extracted from one validity time
+        # from one location as they are equal across all
+        first_location = self._forecasts_pb.location_forecasts[0]
+        if not first_location.forecasts:
+            return []
+
+        first_validity_time = first_location.forecasts[0]
+
+        return [
+            ForecastFeature.from_pb(feature.feature)
+            for feature in first_validity_time.features
+        ]
+
+    def _get_validity_times(self) -> list[dt.datetime]:
+        """Get validity times of the forecasts.
+
+        Returns:
+            List of validity times.
+        """
+        # All location_forecasts have the same validity times
+        first_location = self._forecasts_pb.location_forecasts[0]
+        validity_times = []
+
+        for fc in first_location.forecasts:
+            validity_times.append(
+                dt.datetime.fromtimestamp(fc.valid_at_ts.seconds, tz=dt.UTC)
+            )
+
+        return validity_times
+
     # pylint: disable=too-many-locals,too-many-branches,too-many-statements
     def to_ndarray_vlf(
         self,
@@ -285,17 +362,17 @@ class Forecasts:
             if validity_times is not None and array.shape[0] != len(validity_times):
                 raise ValueError(
                     f"The count of validity times in the array({array.shape[0]}) does "
-                    f"not match the requested validity times count ({validity_times}."
+                    f"not match the requested validity times count ({len(validity_times)})"
                 )
             if locations is not None and array.shape[1] != len(locations):
                 raise ValueError(
                     f"The count of location in the array ({array.shape[1]}) does not "
-                    f"match the requested location count ({locations})."
+                    f"match the requested location count ({len(locations)})"
                 )
             if features is not None and array.shape[2] != len(features):
                 raise ValueError(
                     f"The count of features in the array ({array.shape[2]}) does not "
-                    f"match the requested feature count ({features})."
+                    f"match the requested feature count ({len(features)})"
                 )
 
         # catch all exceptions
