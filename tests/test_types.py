@@ -468,10 +468,10 @@ class TestForecasts:
         )
 
         for loc in range(original.shape[1]):
-            # First values should equal first original value
+            # First values should be nan, as the function should only interpolate
             np.testing.assert_allclose(
                 resampled[0, loc, 0],  # 01:00
-                original[0, loc, 0],
+                np.nan,
                 rtol=1e-10,
                 err_msg="Incorrect handling of first value",
             )
