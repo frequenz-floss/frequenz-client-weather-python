@@ -12,6 +12,7 @@
 
 * Add the client and cli from[frequenz-api-weather v0.11.1](https://github.com/frequenz-floss/frequenz-api-weather/releases/tag/v0.11.1).
 * Add support for the live RPC to the cli tool.
+* Add method to combine conversion from forecast to ndarray and resampling in one method
 <!-- Here goes the main new features and examples or instructions on how to use them -->
 
 ## Bug Fixes

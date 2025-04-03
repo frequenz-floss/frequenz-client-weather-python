@@ -468,10 +468,10 @@ class TestForecasts:
         )
 
         for loc in range(original.shape[1]):
-            # First values should equal first original value
+            # First values should be nan, as the function should only interpolate
             np.testing.assert_allclose(
                 resampled[0, loc, 0],  # 01:00
-                original[0, loc, 0],
+                np.nan,
                 rtol=1e-10,
                 err_msg="Incorrect handling of first value",
             )
@@ -575,3 +575,133 @@ class TestForecasts:
                 rtol=1e-10,
                 err_msg="Original solar values not preserved at shifted points",
             )
+
+    def test_to_resampled_ndarray(
+        self,
+        forecastdata: tuple[
+            weather_pb2.ReceiveLiveWeatherForecastResponse, int, int, int
+        ],
+    ) -> None:
+        """Test resample_to_ndarray_vlf with proper UTC timestamps.
+
+        Verifies resample interpolation works with:
+        1. Times between original timestamps
+        2. Times exactly matching original timestamps
+        3. Different types of features (solar and non-solar)
+        4. Times outside the original range return NaN
+        """
+        forecasts_proto, _, _, _ = forecastdata
+        forecasts = Forecasts.from_pb(forecasts_proto)
+
+        # pylint: disable=protected-access
+        original_times = forecasts._get_validity_times()
+
+        target_times = []
+
+        # Add a time point before the first original time
+        before_ts = original_times[0] - timedelta(minutes=30)
+        target_times.append(before_ts)
+
+        start_time = original_times[0]
+        end_time = original_times[-1]
+
+        current = start_time
+        while current <= end_time:
+            target_times.append(current)
+            half_hour_point = current + timedelta(minutes=30)
+            if half_hour_point <= end_time:
+                target_times.append(half_hour_point)
+            current += timedelta(hours=1)
+
+        # Add a time point after the last original time
+        after_ts = original_times[-1] + timedelta(minutes=30)
+        target_times.append(after_ts)
+
+        # Add one more time point that's outside the solar data range
+        outside_solar_ts = original_times[-1] + timedelta(minutes=60)
+        target_times.append(outside_solar_ts)
+
+        features = [
+            ForecastFeature.U_WIND_COMPONENT_100_METRE,
+            ForecastFeature.SURFACE_SOLAR_RADIATION_DOWNWARDS,
+        ]
+
+        resampled = forecasts.to_resampled_ndarray(
+            validity_times=target_times, features=features
+        )
+
+        assert isinstance(resampled, np.ndarray)
+        assert resampled.shape[0] == len(target_times)
+        assert resampled.shape[2] == len(features)
+
+        original = forecasts.to_ndarray_vlf(features=features)
+
+        # Test 1: Verify original time points are preserved for wind
+        for i, time in enumerate(original_times):
+            target_idx = target_times.index(time)
+            np.testing.assert_allclose(
+                resampled[target_idx, :, 0],
+                original[i, :, 0],
+                rtol=1e-10,
+                err_msg=f"Original wind values not preserved at {time}",
+            )
+
+        # Test 2: Verify interpolation for wind
+        for i, time in enumerate(original_times[:-1]):
+            midpoint_time = time + timedelta(minutes=30)
+            if midpoint_time in target_times:
+                mid_idx = target_times.index(midpoint_time)
+                expected = (original[i, :, 0] + original[i + 1, :, 0]) / 2
+                np.testing.assert_allclose(
+                    resampled[mid_idx, :, 0],
+                    expected,
+                    rtol=1e-10,
+                    err_msg=f"Incorrect wind interpolation at {midpoint_time}",
+                )
+
+        # Test 3: Verify solar feature shifting behavior
+        # For solar features, value at time T is actually for time T+30min
+
+        # First value should be NaN because solar features are shifted
+        first_idx = target_times.index(original_times[0])
+        assert np.all(
+            np.isnan(resampled[first_idx, :, 1])
+        ), "Solar value at first timestamp should be NaN due to shift"
+
+        # At T+30min, solar value should match original value at time T
+        for i, time in enumerate(original_times):
+            shifted_time = time + timedelta(minutes=30)
+            if shifted_time in target_times:
+                shifted_idx = target_times.index(shifted_time)
+                np.testing.assert_allclose(
+                    resampled[shifted_idx, :, 1],
+                    original[i, :, 1],
+                    rtol=1e-10,
+                    err_msg=f"Solar value not correctly shifted to {shifted_time}",
+                )
+
+        # Test 4: Verify values outside the original time range
+        before_idx = target_times.index(before_ts)
+        assert np.all(
+            np.isnan(resampled[before_idx, :, :])
+        ), "All values before the first timestamp should be NaN"
+
+        after_idx = target_times.index(after_ts)
+        assert np.all(
+            np.isnan(resampled[after_idx, :, 0])
+        ), "Wind values after the last timestamp should be NaN"
+
+        # Solar should match the last original value (due to shift)
+        last_original_idx = len(original_times) - 1
+        np.testing.assert_allclose(
+            resampled[after_idx, :, 1],
+            original[last_original_idx, :, 1],
+            rtol=1e-10,
+            err_msg="Solar value not correctly shifted at last+30min point",
+        )
+
+        # Check point beyond solar data range (60min after last timestamp)
+        beyond_idx = target_times.index(outside_solar_ts)
+        assert np.all(
+            np.isnan(resampled[beyond_idx, :, :])
+        ), "All values beyond last timestamp+30min should be NaN"
