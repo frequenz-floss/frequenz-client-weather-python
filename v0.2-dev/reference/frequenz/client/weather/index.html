@@ -909,24 +909,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#frequenz.client.weather.Forecasts._get_features" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;_get_features
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#frequenz.client.weather.Forecasts._get_validity_times" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;_get_validity_times
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#frequenz.client.weather.Forecasts.flatten" class="md-nav__link">
     <span class="md-ellipsis">
       <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;flatten
@@ -1081,6 +1063,7 @@
 
 
 
+
   <div class="doc doc-children">
 
 
@@ -1107,6 +1090,7 @@
 
 
         <p>Weather forecast client.</p>
+
 
 
 
@@ -1375,6 +1359,7 @@ doing and you don't care about being tied to a specific gRPC library.</p>
           </tr>
       </tbody>
     </table>
+
     </div>
 
 </div>
@@ -1398,6 +1383,7 @@ doing and you don't care about being tied to a specific gRPC library.</p>
     <div class="doc doc-contents ">
 
         <p>The default options for the gRPC channel.</p>
+
     </div>
 
 </div>
@@ -1421,6 +1407,7 @@ doing and you don't care about being tied to a specific gRPC library.</p>
     <div class="doc doc-contents ">
 
         <p>Whether the client is connected to the server.</p>
+
     </div>
 
 </div>
@@ -1444,6 +1431,7 @@ doing and you don't care about being tied to a specific gRPC library.</p>
     <div class="doc doc-contents ">
 
         <p>The URL of the server.</p>
+
     </div>
 
 </div>
@@ -1515,6 +1503,7 @@ doing and you don't care about being tied to a specific gRPC library.</p>
           </tr>
       </tbody>
     </table>
+
     </div>
 
 </div>
@@ -1539,6 +1528,7 @@ doing and you don't care about being tied to a specific gRPC library.</p>
     <div class="doc doc-contents ">
 
         <p>Enter a context manager.</p>
+
 
             <details class="quote">
               <summary>Source code in <code>frequenz/client/base/client.py</code></summary>
@@ -1577,6 +1567,7 @@ doing and you don't care about being tied to a specific gRPC library.</p>
     <div class="doc doc-contents ">
 
         <p>Exit a context manager.</p>
+
 
             <details class="quote">
               <summary>Source code in <code>frequenz/client/base/client.py</code></summary>
@@ -1664,7 +1655,7 @@ doing and you don't care about being tied to a specific gRPC library.</p>
               <div class="doc-md-description">
                 <p>Whether to connect to the server as soon as a client instance is
 created. If <code>False</code>, the client will not connect to the server until
-<a class="autorefs autorefs-internal" href="#frequenz.client.weather.Client.connect">connect()</a> is
+<a class="autorefs autorefs-internal" title="connect" href="#frequenz.client.weather.Client.connect">connect()</a> is
 called.</p>
               </div>
               <p>
@@ -1701,6 +1692,7 @@ called.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>frequenz/client/weather/_client.py</code></summary>
@@ -1783,7 +1775,12 @@ called.</p>
         <p>Connect to the server, possibly using a new URL.</p>
 <p>If the client is already connected and the URL is the same as the previous URL,
 this method does nothing. If you want to force a reconnection, you can call
-<a class="autorefs autorefs-internal" href="#frequenz.client.weather.Client.disconnect">disconnect()</a> first.</p>
+<a class="autorefs autorefs-internal" title="disconnect
+
+
+  
+      async
+  " href="#frequenz.client.weather.Client.disconnect">disconnect()</a> first.</p>
 
 
 <table>
@@ -1817,6 +1814,7 @@ previously used URL is used.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>frequenz/client/base/client.py</code></summary>
@@ -1879,6 +1877,7 @@ previously used URL is used.</p>
         <p>Disconnect from the server.</p>
 <p>If the client is not connected, this method does nothing.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>frequenz/client/base/client.py</code></summary>
               <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-230">230</a></span>
@@ -1907,8 +1906,13 @@ previously used URL is used.</p>
 
 <a href="#frequenz.client.weather.Client.hist_forecast_iterator" class="headerlink" title="Permanent link">¤</a></h6>
 <div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">hist_forecast_iterator</span><span class="p">(</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">locations</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="frequenz.client.weather._types.Location" href="#frequenz.client.weather.Location">Location</a></span><span class="p">],</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">features</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="frequenz.client.weather._types.ForecastFeature" href="#frequenz.client.weather.ForecastFeature">ForecastFeature</a></span><span class="p">],</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">locations</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="frequenz.client.weather.Location
+
+
+  
+      dataclass
+   (frequenz.client.weather._types.Location)" href="#frequenz.client.weather.Location">Location</a></span><span class="p">],</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">features</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="frequenz.client.weather.ForecastFeature (frequenz.client.weather._types.ForecastFeature)" href="#frequenz.client.weather.ForecastFeature">ForecastFeature</a></span><span class="p">],</span>
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">start</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="datetime.datetime" href="https://docs.python.org/3/library/datetime.html#datetime.datetime">datetime</a></span><span class="p">,</span>
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">end</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="datetime.datetime" href="https://docs.python.org/3/library/datetime.html#datetime.datetime">datetime</a></span><span class="p">,</span>
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="frequenz.client.weather._historical_forecast_iterator.HistoricalForecastIterator">HistoricalForecastIterator</span></span>
@@ -1938,7 +1942,12 @@ previously used URL is used.</p>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a>[<a class="autorefs autorefs-internal" title="frequenz.client.weather._types.Location" href="#frequenz.client.weather.Location">Location</a>]</code>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a>[<a class="autorefs autorefs-internal" title="frequenz.client.weather.Location
+
+
+  
+      dataclass
+   (frequenz.client.weather._types.Location)" href="#frequenz.client.weather.Location">Location</a>]</code>
                   </span>
               </p>
             </td>
@@ -1954,7 +1963,7 @@ previously used URL is used.</p>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a>[<a class="autorefs autorefs-internal" title="frequenz.client.weather._types.ForecastFeature" href="#frequenz.client.weather.ForecastFeature">ForecastFeature</a>]</code>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a>[<a class="autorefs autorefs-internal" title="frequenz.client.weather.ForecastFeature (frequenz.client.weather._types.ForecastFeature)" href="#frequenz.client.weather.ForecastFeature">ForecastFeature</a>]</code>
                   </span>
               </p>
             </td>
@@ -2018,6 +2027,7 @@ previously used URL is used.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>frequenz/client/weather/_client.py</code></summary>
               <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-101">101</a></span>
@@ -2076,9 +2086,19 @@ previously used URL is used.</p>
 
 <a href="#frequenz.client.weather.Client.stream_live_forecast" class="headerlink" title="Permanent link">¤</a></h6>
 <div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">stream_live_forecast</span><span class="p">(</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">locations</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="frequenz.client.weather._types.Location" href="#frequenz.client.weather.Location">Location</a></span><span class="p">],</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">features</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="frequenz.client.weather._types.ForecastFeature" href="#frequenz.client.weather.ForecastFeature">ForecastFeature</a></span><span class="p">],</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="frequenz.channels.Receiver">Receiver</span></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="frequenz.client.weather._types.Forecasts" href="#frequenz.client.weather.Forecasts">Forecasts</a></span><span class="p">]</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">locations</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="frequenz.client.weather.Location
+
+
+  
+      dataclass
+   (frequenz.client.weather._types.Location)" href="#frequenz.client.weather.Location">Location</a></span><span class="p">],</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">features</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="frequenz.client.weather.ForecastFeature (frequenz.client.weather._types.ForecastFeature)" href="#frequenz.client.weather.ForecastFeature">ForecastFeature</a></span><span class="p">],</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="frequenz.channels.Receiver">Receiver</span></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="frequenz.client.weather.Forecasts
+
+
+  
+      dataclass
+   (frequenz.client.weather._types.Forecasts)" href="#frequenz.client.weather.Forecasts">Forecasts</a></span><span class="p">]</span>
 </span></code></pre></div>
 
     <div class="doc doc-contents ">
@@ -2105,7 +2125,12 @@ previously used URL is used.</p>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a>[<a class="autorefs autorefs-internal" title="frequenz.client.weather._types.Location" href="#frequenz.client.weather.Location">Location</a>]</code>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a>[<a class="autorefs autorefs-internal" title="frequenz.client.weather.Location
+
+
+  
+      dataclass
+   (frequenz.client.weather._types.Location)" href="#frequenz.client.weather.Location">Location</a>]</code>
                   </span>
               </p>
             </td>
@@ -2121,7 +2146,7 @@ previously used URL is used.</p>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a>[<a class="autorefs autorefs-internal" title="frequenz.client.weather._types.ForecastFeature" href="#frequenz.client.weather.ForecastFeature">ForecastFeature</a>]</code>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a>[<a class="autorefs autorefs-internal" title="frequenz.client.weather.ForecastFeature (frequenz.client.weather._types.ForecastFeature)" href="#frequenz.client.weather.ForecastFeature">ForecastFeature</a>]</code>
                   </span>
               </p>
             </td>
@@ -2141,7 +2166,12 @@ previously used URL is used.</p>
           <tr class="doc-section-item">
             <td>
                 <span class="doc-returns-annotation">
-                    <code><span title="frequenz.channels.Receiver">Receiver</span>[<a class="autorefs autorefs-internal" title="frequenz.client.weather._types.Forecasts" href="#frequenz.client.weather.Forecasts">Forecasts</a>]</code>
+                    <code><span title="frequenz.channels.Receiver">Receiver</span>[<a class="autorefs autorefs-internal" title="frequenz.client.weather.Forecasts
+
+
+  
+      dataclass
+   (frequenz.client.weather._types.Forecasts)" href="#frequenz.client.weather.Forecasts">Forecasts</a>]</code>
                 </span>
             </td>
             <td class="doc-returns-details">
@@ -2152,6 +2182,7 @@ previously used URL is used.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>frequenz/client/weather/_client.py</code></summary>
@@ -2241,6 +2272,7 @@ previously used URL is used.</p>
 
 
         <p>Weather forecast features available through the API.</p>
+
 
 
 
@@ -2403,6 +2435,7 @@ previously used URL is used.</p>
     <div class="doc doc-contents ">
 
         <p>Surface net solar radiation.</p>
+
     </div>
 
 </div>
@@ -2429,6 +2462,7 @@ previously used URL is used.</p>
     <div class="doc doc-contents ">
 
         <p>Surface solar radiation downwards.</p>
+
     </div>
 
 </div>
@@ -2453,6 +2487,7 @@ previously used URL is used.</p>
     <div class="doc doc-contents ">
 
         <p>Temperature at 2m above the earth's surface.</p>
+
     </div>
 
 </div>
@@ -2477,6 +2512,7 @@ previously used URL is used.</p>
     <div class="doc doc-contents ">
 
         <p>Unspecified forecast feature.</p>
+
     </div>
 
 </div>
@@ -2503,6 +2539,7 @@ previously used URL is used.</p>
     <div class="doc doc-contents ">
 
         <p>Eastward wind component at 100m altitude.</p>
+
     </div>
 
 </div>
@@ -2529,6 +2566,7 @@ previously used URL is used.</p>
     <div class="doc doc-contents ">
 
         <p>Eastward wind component at 10m altitude.</p>
+
     </div>
 
 </div>
@@ -2555,6 +2593,7 @@ previously used URL is used.</p>
     <div class="doc doc-contents ">
 
         <p>Northward wind component at 100m altitude.</p>
+
     </div>
 
 </div>
@@ -2581,6 +2620,7 @@ previously used URL is used.</p>
     <div class="doc doc-contents ">
 
         <p>Northward wind component at 10m altitude.</p>
+
     </div>
 
 </div>
@@ -2599,7 +2639,7 @@ previously used URL is used.</p>
   </span>
 
 <a href="#frequenz.client.weather.ForecastFeature.from_pb" class="headerlink" title="Permanent link">¤</a></h6>
-<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">from_pb</span><span class="p">(</span><span class="n">forecast_feature</span><span class="p">:</span> <span class="n"><span title="frequenz.api.weather.weather_pb2.ForecastFeature.ValueType">ValueType</span></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-internal" title="frequenz.client.weather._types.ForecastFeature" href="#frequenz.client.weather.ForecastFeature">ForecastFeature</a></span>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">from_pb</span><span class="p">(</span><span class="n">forecast_feature</span><span class="p">:</span> <span class="n"><span title="frequenz.api.weather.weather_pb2.ForecastFeature.ValueType">ValueType</span></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-internal" title="frequenz.client.weather.ForecastFeature (frequenz.client.weather._types.ForecastFeature)" href="#frequenz.client.weather.ForecastFeature">ForecastFeature</a></span>
 </span></code></pre></div>
 
     <div class="doc doc-contents ">
@@ -2646,7 +2686,7 @@ previously used URL is used.</p>
           <tr class="doc-section-item">
             <td>
                 <span class="doc-returns-annotation">
-                    <code><a class="autorefs autorefs-internal" title="frequenz.client.weather._types.ForecastFeature" href="#frequenz.client.weather.ForecastFeature">ForecastFeature</a></code>
+                    <code><a class="autorefs autorefs-internal" title="frequenz.client.weather.ForecastFeature (frequenz.client.weather._types.ForecastFeature)" href="#frequenz.client.weather.ForecastFeature">ForecastFeature</a></code>
                 </span>
             </td>
             <td class="doc-returns-details">
@@ -2657,6 +2697,7 @@ previously used URL is used.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>frequenz/client/weather/_types.py</code></summary>
@@ -2730,6 +2771,7 @@ previously used URL is used.</p>
 
 
         <p>Weather forecast data.</p>
+
 
 
 
@@ -3437,170 +3479,6 @@ previously used URL is used.</p>
 <div class="doc doc-object doc-function">
 
 
-<h6 id="frequenz.client.weather.Forecasts._get_features" class="doc doc-heading">
-            <span class="doc doc-object-name doc-function-name">_get_features</span>
-
-
-<a href="#frequenz.client.weather.Forecasts._get_features" class="headerlink" title="Permanent link">¤</a></h6>
-<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">_get_features</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="frequenz.client.weather._types.ForecastFeature" href="#frequenz.client.weather.ForecastFeature">ForecastFeature</a></span><span class="p">]</span>
-</span></code></pre></div>
-
-    <div class="doc doc-contents ">
-
-        <p>Return the available features in the Forecast.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a>[<a class="autorefs autorefs-internal" title="frequenz.client.weather._types.ForecastFeature" href="#frequenz.client.weather.ForecastFeature">ForecastFeature</a>]</code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>List of forecast features.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-            <details class="quote">
-              <summary>Source code in <code>frequenz/client/weather/_types.py</code></summary>
-              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-193">193</a></span>
-<span class="normal"><a href="#__codelineno-0-194">194</a></span>
-<span class="normal"><a href="#__codelineno-0-195">195</a></span>
-<span class="normal"><a href="#__codelineno-0-196">196</a></span>
-<span class="normal"><a href="#__codelineno-0-197">197</a></span>
-<span class="normal"><a href="#__codelineno-0-198">198</a></span>
-<span class="normal"><a href="#__codelineno-0-199">199</a></span>
-<span class="normal"><a href="#__codelineno-0-200">200</a></span>
-<span class="normal"><a href="#__codelineno-0-201">201</a></span>
-<span class="normal"><a href="#__codelineno-0-202">202</a></span>
-<span class="normal"><a href="#__codelineno-0-203">203</a></span>
-<span class="normal"><a href="#__codelineno-0-204">204</a></span>
-<span class="normal"><a href="#__codelineno-0-205">205</a></span>
-<span class="normal"><a href="#__codelineno-0-206">206</a></span>
-<span class="normal"><a href="#__codelineno-0-207">207</a></span>
-<span class="normal"><a href="#__codelineno-0-208">208</a></span>
-<span class="normal"><a href="#__codelineno-0-209">209</a></span>
-<span class="normal"><a href="#__codelineno-0-210">210</a></span>
-<span class="normal"><a href="#__codelineno-0-211">211</a></span>
-<span class="normal"><a href="#__codelineno-0-212">212</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-193"><a id="__codelineno-0-193" name="__codelineno-0-193"></a><span class="k">def</span><span class="w"> </span><span class="nf">_get_features</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">ForecastFeature</span><span class="p">]:</span>
-</span><span id="__span-0-194"><a id="__codelineno-0-194" name="__codelineno-0-194"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the available features in the Forecast.</span>
-</span><span id="__span-0-195"><a id="__codelineno-0-195" name="__codelineno-0-195"></a>
-</span><span id="__span-0-196"><a id="__codelineno-0-196" name="__codelineno-0-196"></a><span class="sd">    Returns:</span>
-</span><span id="__span-0-197"><a id="__codelineno-0-197" name="__codelineno-0-197"></a><span class="sd">        List of forecast features.</span>
-</span><span id="__span-0-198"><a id="__codelineno-0-198" name="__codelineno-0-198"></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="__span-0-199"><a id="__codelineno-0-199" name="__codelineno-0-199"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forecasts_pb</span><span class="o">.</span><span class="n">location_forecasts</span><span class="p">:</span>
-</span><span id="__span-0-200"><a id="__codelineno-0-200" name="__codelineno-0-200"></a>        <span class="k">return</span> <span class="p">[]</span>
-</span><span id="__span-0-201"><a id="__codelineno-0-201" name="__codelineno-0-201"></a>    <span class="c1"># Features need to only be extracted from one validity time</span>
-</span><span id="__span-0-202"><a id="__codelineno-0-202" name="__codelineno-0-202"></a>    <span class="c1"># from one location as they are equal across all</span>
-</span><span id="__span-0-203"><a id="__codelineno-0-203" name="__codelineno-0-203"></a>    <span class="n">first_location</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forecasts_pb</span><span class="o">.</span><span class="n">location_forecasts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</span><span id="__span-0-204"><a id="__codelineno-0-204" name="__codelineno-0-204"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">first_location</span><span class="o">.</span><span class="n">forecasts</span><span class="p">:</span>
-</span><span id="__span-0-205"><a id="__codelineno-0-205" name="__codelineno-0-205"></a>        <span class="k">return</span> <span class="p">[]</span>
-</span><span id="__span-0-206"><a id="__codelineno-0-206" name="__codelineno-0-206"></a>
-</span><span id="__span-0-207"><a id="__codelineno-0-207" name="__codelineno-0-207"></a>    <span class="n">first_validity_time</span> <span class="o">=</span> <span class="n">first_location</span><span class="o">.</span><span class="n">forecasts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</span><span id="__span-0-208"><a id="__codelineno-0-208" name="__codelineno-0-208"></a>
-</span><span id="__span-0-209"><a id="__codelineno-0-209" name="__codelineno-0-209"></a>    <span class="k">return</span> <span class="p">[</span>
-</span><span id="__span-0-210"><a id="__codelineno-0-210" name="__codelineno-0-210"></a>        <span class="n">ForecastFeature</span><span class="o">.</span><span class="n">from_pb</span><span class="p">(</span><span class="n">feature</span><span class="o">.</span><span class="n">feature</span><span class="p">)</span>
-</span><span id="__span-0-211"><a id="__codelineno-0-211" name="__codelineno-0-211"></a>        <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">first_validity_time</span><span class="o">.</span><span class="n">features</span>
-</span><span id="__span-0-212"><a id="__codelineno-0-212" name="__codelineno-0-212"></a>    <span class="p">]</span>
-</span></code></pre></div></td></tr></table></div>
-            </details>
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-<h6 id="frequenz.client.weather.Forecasts._get_validity_times" class="doc doc-heading">
-            <span class="doc doc-object-name doc-function-name">_get_validity_times</span>
-
-
-<a href="#frequenz.client.weather.Forecasts._get_validity_times" class="headerlink" title="Permanent link">¤</a></h6>
-<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">_get_validity_times</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" title="datetime.datetime" href="https://docs.python.org/3/library/datetime.html#datetime.datetime">datetime</a></span><span class="p">]</span>
-</span></code></pre></div>
-
-    <div class="doc doc-contents ">
-
-        <p>Get validity times of the forecasts.</p>
-
-
-<table>
-      <thead>
-        <tr>
-          <th><span class="doc-section-title">RETURNS</span></th>
-          <th><span>DESCRIPTION</span></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <span class="doc-returns-annotation">
-                    <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a>[<a class="autorefs autorefs-external" title="datetime.datetime" href="https://docs.python.org/3/library/datetime.html#datetime.datetime">datetime</a>]</code>
-                </span>
-            </td>
-            <td class="doc-returns-details">
-              <div class="doc-md-description">
-                <p>List of validity times.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-            <details class="quote">
-              <summary>Source code in <code>frequenz/client/weather/_types.py</code></summary>
-              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-214">214</a></span>
-<span class="normal"><a href="#__codelineno-0-215">215</a></span>
-<span class="normal"><a href="#__codelineno-0-216">216</a></span>
-<span class="normal"><a href="#__codelineno-0-217">217</a></span>
-<span class="normal"><a href="#__codelineno-0-218">218</a></span>
-<span class="normal"><a href="#__codelineno-0-219">219</a></span>
-<span class="normal"><a href="#__codelineno-0-220">220</a></span>
-<span class="normal"><a href="#__codelineno-0-221">221</a></span>
-<span class="normal"><a href="#__codelineno-0-222">222</a></span>
-<span class="normal"><a href="#__codelineno-0-223">223</a></span>
-<span class="normal"><a href="#__codelineno-0-224">224</a></span>
-<span class="normal"><a href="#__codelineno-0-225">225</a></span>
-<span class="normal"><a href="#__codelineno-0-226">226</a></span>
-<span class="normal"><a href="#__codelineno-0-227">227</a></span>
-<span class="normal"><a href="#__codelineno-0-228">228</a></span>
-<span class="normal"><a href="#__codelineno-0-229">229</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-214"><a id="__codelineno-0-214" name="__codelineno-0-214"></a><span class="k">def</span><span class="w"> </span><span class="nf">_get_validity_times</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">]:</span>
-</span><span id="__span-0-215"><a id="__codelineno-0-215" name="__codelineno-0-215"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Get validity times of the forecasts.</span>
-</span><span id="__span-0-216"><a id="__codelineno-0-216" name="__codelineno-0-216"></a>
-</span><span id="__span-0-217"><a id="__codelineno-0-217" name="__codelineno-0-217"></a><span class="sd">    Returns:</span>
-</span><span id="__span-0-218"><a id="__codelineno-0-218" name="__codelineno-0-218"></a><span class="sd">        List of validity times.</span>
-</span><span id="__span-0-219"><a id="__codelineno-0-219" name="__codelineno-0-219"></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="__span-0-220"><a id="__codelineno-0-220" name="__codelineno-0-220"></a>    <span class="c1"># All location_forecasts have the same validity times</span>
-</span><span id="__span-0-221"><a id="__codelineno-0-221" name="__codelineno-0-221"></a>    <span class="n">first_location</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forecasts_pb</span><span class="o">.</span><span class="n">location_forecasts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</span><span id="__span-0-222"><a id="__codelineno-0-222" name="__codelineno-0-222"></a>    <span class="n">validity_times</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span id="__span-0-223"><a id="__codelineno-0-223" name="__codelineno-0-223"></a>
-</span><span id="__span-0-224"><a id="__codelineno-0-224" name="__codelineno-0-224"></a>    <span class="k">for</span> <span class="n">fc</span> <span class="ow">in</span> <span class="n">first_location</span><span class="o">.</span><span class="n">forecasts</span><span class="p">:</span>
-</span><span id="__span-0-225"><a id="__codelineno-0-225" name="__codelineno-0-225"></a>        <span class="n">validity_times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-</span><span id="__span-0-226"><a id="__codelineno-0-226" name="__codelineno-0-226"></a>            <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">fc</span><span class="o">.</span><span class="n">valid_at_ts</span><span class="o">.</span><span class="n">seconds</span><span class="p">,</span> <span class="n">tz</span><span class="o">=</span><span class="n">dt</span><span class="o">.</span><span class="n">UTC</span><span class="p">)</span>
-</span><span id="__span-0-227"><a id="__codelineno-0-227" name="__codelineno-0-227"></a>        <span class="p">)</span>
-</span><span id="__span-0-228"><a id="__codelineno-0-228" name="__codelineno-0-228"></a>
-</span><span id="__span-0-229"><a id="__codelineno-0-229" name="__codelineno-0-229"></a>    <span class="k">return</span> <span class="n">validity_times</span>
-</span></code></pre></div></td></tr></table></div>
-            </details>
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
 <h6 id="frequenz.client.weather.Forecasts.flatten" class="doc doc-heading">
             <span class="doc doc-object-name doc-function-name">flatten</span>
 
@@ -3661,6 +3539,7 @@ previously used URL is used.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>frequenz/client/weather/_types.py</code></summary>
               <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-461">461</a></span>
@@ -3710,7 +3589,12 @@ previously used URL is used.</p>
 <a href="#frequenz.client.weather.Forecasts.from_pb" class="headerlink" title="Permanent link">¤</a></h6>
 <div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">from_pb</span><span class="p">(</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">forecasts</span><span class="p">:</span> <span class="n"><span title="frequenz.api.weather.weather_pb2.ReceiveLiveWeatherForecastResponse">ReceiveLiveWeatherForecastResponse</span></span><span class="p">,</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-internal" title="frequenz.client.weather._types.Forecasts" href="#frequenz.client.weather.Forecasts">Forecasts</a></span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-internal" title="frequenz.client.weather.Forecasts
+
+
+  
+      dataclass
+   (frequenz.client.weather._types.Forecasts)" href="#frequenz.client.weather.Forecasts">Forecasts</a></span>
 </span></code></pre></div>
 
     <div class="doc doc-contents ">
@@ -3757,7 +3641,12 @@ previously used URL is used.</p>
           <tr class="doc-section-item">
             <td>
                 <span class="doc-returns-annotation">
-                    <code><a class="autorefs autorefs-internal" title="frequenz.client.weather._types.Forecasts" href="#frequenz.client.weather.Forecasts">Forecasts</a></code>
+                    <code><a class="autorefs autorefs-internal" title="frequenz.client.weather.Forecasts
+
+
+  
+      dataclass
+   (frequenz.client.weather._types.Forecasts)" href="#frequenz.client.weather.Forecasts">Forecasts</a></code>
                 </span>
             </td>
             <td class="doc-returns-details">
@@ -3768,6 +3657,7 @@ previously used URL is used.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>frequenz/client/weather/_types.py</code></summary>
@@ -3812,8 +3702,13 @@ previously used URL is used.</p>
 <a href="#frequenz.client.weather.Forecasts.to_ndarray_vlf" class="headerlink" title="Permanent link">¤</a></h6>
 <div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">to_ndarray_vlf</span><span class="p">(</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">validity_times</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" title="datetime.datetime" href="https://docs.python.org/3/library/datetime.html#datetime.datetime">datetime</a></span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">locations</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="frequenz.client.weather._types.Location" href="#frequenz.client.weather.Location">Location</a></span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">features</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="frequenz.client.weather._types.ForecastFeature" href="#frequenz.client.weather.ForecastFeature">ForecastFeature</a></span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">locations</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="frequenz.client.weather.Location
+
+
+  
+      dataclass
+   (frequenz.client.weather._types.Location)" href="#frequenz.client.weather.Location">Location</a></span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">features</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="frequenz.client.weather.ForecastFeature (frequenz.client.weather._types.ForecastFeature)" href="#frequenz.client.weather.ForecastFeature">ForecastFeature</a></span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="numpy.ndarray">ndarray</span></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#tuple">tuple</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">],</span> <span class="n"><span title="numpy.dtype">dtype</span></span><span class="p">[</span><span class="n"><span title="numpy.float64">float64</span></span><span class="p">]]</span>
 </span></code></pre></div>
 
@@ -3862,7 +3757,12 @@ previously used URL is used.</p>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a>[<a class="autorefs autorefs-internal" title="frequenz.client.weather._types.Location" href="#frequenz.client.weather.Location">Location</a>] | None</code>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a>[<a class="autorefs autorefs-internal" title="frequenz.client.weather.Location
+
+
+  
+      dataclass
+   (frequenz.client.weather._types.Location)" href="#frequenz.client.weather.Location">Location</a>] | None</code>
                   </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
@@ -3882,7 +3782,7 @@ previously used URL is used.</p>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a>[<a class="autorefs autorefs-internal" title="frequenz.client.weather._types.ForecastFeature" href="#frequenz.client.weather.ForecastFeature">ForecastFeature</a>] | None</code>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a>[<a class="autorefs autorefs-internal" title="frequenz.client.weather.ForecastFeature (frequenz.client.weather._types.ForecastFeature)" href="#frequenz.client.weather.ForecastFeature">ForecastFeature</a>] | None</code>
                   </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
@@ -3953,6 +3853,7 @@ previously used URL is used.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>frequenz/client/weather/_types.py</code></summary>
@@ -4273,8 +4174,13 @@ previously used URL is used.</p>
 <a href="#frequenz.client.weather.Forecasts.to_resampled_ndarray" class="headerlink" title="Permanent link">¤</a></h6>
 <div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">to_resampled_ndarray</span><span class="p">(</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">validity_times</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" title="datetime.datetime" href="https://docs.python.org/3/library/datetime.html#datetime.datetime">datetime</a></span><span class="p">],</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">locations</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="frequenz.client.weather._types.Location" href="#frequenz.client.weather.Location">Location</a></span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">features</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="frequenz.client.weather._types.ForecastFeature" href="#frequenz.client.weather.ForecastFeature">ForecastFeature</a></span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">locations</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="frequenz.client.weather.Location
+
+
+  
+      dataclass
+   (frequenz.client.weather._types.Location)" href="#frequenz.client.weather.Location">Location</a></span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">features</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="frequenz.client.weather.ForecastFeature (frequenz.client.weather._types.ForecastFeature)" href="#frequenz.client.weather.ForecastFeature">ForecastFeature</a></span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">solar_offset_sec</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="mi">1800</span><span class="p">,</span>
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="numpy.ndarray">ndarray</span></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#tuple">tuple</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">],</span> <span class="n"><span title="numpy.dtype">dtype</span></span><span class="p">[</span><span class="n"><span title="numpy.float64">float64</span></span><span class="p">]]</span>
 </span></code></pre></div>
@@ -4319,7 +4225,12 @@ previously used URL is used.</p>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a>[<a class="autorefs autorefs-internal" title="frequenz.client.weather._types.Location" href="#frequenz.client.weather.Location">Location</a>] | None</code>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a>[<a class="autorefs autorefs-internal" title="frequenz.client.weather.Location
+
+
+  
+      dataclass
+   (frequenz.client.weather._types.Location)" href="#frequenz.client.weather.Location">Location</a>] | None</code>
                   </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
@@ -4339,7 +4250,7 @@ previously used URL is used.</p>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a>[<a class="autorefs autorefs-internal" title="frequenz.client.weather._types.ForecastFeature" href="#frequenz.client.weather.ForecastFeature">ForecastFeature</a>] | None</code>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a>[<a class="autorefs autorefs-internal" title="frequenz.client.weather.ForecastFeature (frequenz.client.weather._types.ForecastFeature)" href="#frequenz.client.weather.ForecastFeature">ForecastFeature</a>] | None</code>
                   </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
@@ -4394,6 +4305,7 @@ previously used URL is used.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>frequenz/client/weather/_types.py</code></summary>
@@ -4490,7 +4402,7 @@ previously used URL is used.</p>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">array</span><span class="p">:</span> <span class="n"><span title="numpy.ndarray">ndarray</span></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#tuple">tuple</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">],</span> <span class="n"><span title="numpy.dtype">dtype</span></span><span class="p">[</span><span class="n"><span title="numpy.float64">float64</span></span><span class="p">]],</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">validity_times</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" title="datetime.datetime" href="https://docs.python.org/3/library/datetime.html#datetime.datetime">datetime</a></span><span class="p">],</span>
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">target_times</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" title="datetime.datetime" href="https://docs.python.org/3/library/datetime.html#datetime.datetime">datetime</a></span><span class="p">],</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">features</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="frequenz.client.weather._types.ForecastFeature" href="#frequenz.client.weather.ForecastFeature">ForecastFeature</a></span><span class="p">],</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">features</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="frequenz.client.weather.ForecastFeature (frequenz.client.weather._types.ForecastFeature)" href="#frequenz.client.weather.ForecastFeature">ForecastFeature</a></span><span class="p">],</span>
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">solar_offset_sec</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="mi">1800</span><span class="p">,</span>
 </span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="numpy.ndarray">ndarray</span></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#tuple">tuple</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">],</span> <span class="n"><span title="numpy.dtype">dtype</span></span><span class="p">[</span><span class="n"><span title="numpy.float64">float64</span></span><span class="p">]]</span>
 </span></code></pre></div>
@@ -4567,7 +4479,7 @@ previously used URL is used.</p>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a>[<a class="autorefs autorefs-internal" title="frequenz.client.weather._types.ForecastFeature" href="#frequenz.client.weather.ForecastFeature">ForecastFeature</a>]</code>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a>[<a class="autorefs autorefs-internal" title="frequenz.client.weather.ForecastFeature (frequenz.client.weather._types.ForecastFeature)" href="#frequenz.client.weather.ForecastFeature">ForecastFeature</a>]</code>
                   </span>
               </p>
             </td>
@@ -4642,6 +4554,7 @@ previously used URL is used.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>frequenz/client/weather/_types.py</code></summary>
@@ -4887,6 +4800,7 @@ previously used URL is used.</p>
 
 
 
+
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/weather/_types.py</code></summary>
                 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-91"> 91</a></span>
@@ -4997,7 +4911,12 @@ previously used URL is used.</p>
   </span>
 
 <a href="#frequenz.client.weather.Location.from_pb" class="headerlink" title="Permanent link">¤</a></h6>
-<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">from_pb</span><span class="p">(</span><span class="n">location</span><span class="p">:</span> <span class="n"><span title="frequenz.api.common.v1.location_pb2.Location">Location</span></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-internal" title="frequenz.client.weather._types.Location" href="#frequenz.client.weather.Location">Location</a></span>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">from_pb</span><span class="p">(</span><span class="n">location</span><span class="p">:</span> <span class="n"><span title="frequenz.api.common.v1.location_pb2.Location">Location</span></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-internal" title="frequenz.client.weather.Location
+
+
+  
+      dataclass
+   (frequenz.client.weather._types.Location)" href="#frequenz.client.weather.Location">Location</a></span>
 </span></code></pre></div>
 
     <div class="doc doc-contents ">
@@ -5044,7 +4963,12 @@ previously used URL is used.</p>
           <tr class="doc-section-item">
             <td>
                 <span class="doc-returns-annotation">
-                    <code><a class="autorefs autorefs-internal" title="frequenz.client.weather._types.Location" href="#frequenz.client.weather.Location">Location</a></code>
+                    <code><a class="autorefs autorefs-internal" title="frequenz.client.weather.Location
+
+
+  
+      dataclass
+   (frequenz.client.weather._types.Location)" href="#frequenz.client.weather.Location">Location</a></code>
                 </span>
             </td>
             <td class="doc-returns-details">
@@ -5055,6 +4979,7 @@ previously used URL is used.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>frequenz/client/weather/_types.py</code></summary>
@@ -5131,6 +5056,7 @@ previously used URL is used.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>frequenz/client/weather/_types.py</code></summary>
