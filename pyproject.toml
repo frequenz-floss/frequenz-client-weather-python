@@ -5,7 +5,7 @@
 requires = [
   "setuptools == 75.8.0",
   "setuptools_scm[toml] == 8.1.0",
-  "frequenz-repo-config[lib] == 0.12.3",
+  "frequenz-repo-config[lib] == 0.13.2",
 ]
 build-backend = "setuptools.build_meta"
 
@@ -27,7 +27,7 @@ classifiers = [
 requires-python = ">= 3.11, < 4"
 dependencies = [
   "typing-extensions >= 4.12.2, < 5",
-  "numpy >= 1.24.2, < 2",
+  "numpy >= 1.26.0, < 2",
   "frequenz-api-common >= 0.6.0, < 0.7.0",
   "googleapis-common-protos >= 1.56.4, < 2",
   "frequenz-channels >= 1.6.1, < 2",
@@ -47,7 +47,7 @@ email = "floss@frequenz.com"
 dev-flake8 = [
   "flake8 == 7.1.1",
   "flake8-docstrings == 1.7.0",
-  "flake8-pyproject == 1.2.3",  # For reading the flake8 config from pyproject.toml
+  "flake8-pyproject == 1.2.3", # For reading the flake8 config from pyproject.toml
   "pydoclint == 0.6.0",
   "pydocstyle == 6.3.0",
 ]
@@ -60,9 +60,9 @@ dev-mkdocs = [
   "mkdocs-literate-nav == 0.6.1",
   "mkdocs-macros-plugin == 1.3.7",
   "mkdocs-material == 9.6.2",
-  "mkdocstrings[python] == 0.28.0",
-  "mkdocstrings-python == 1.14.6",
-  "frequenz-repo-config[lib] == 0.12.3",
+  "mkdocstrings[python] == 0.29.1",
+  "mkdocstrings-python == 1.16.10",
+  "frequenz-repo-config[lib] == 0.13.2",
 ]
 dev-mypy = [
   "mypy == 1.9.0",
@@ -71,10 +71,7 @@ dev-mypy = [
   # For checking the noxfile, docs/ script, and tests
   "frequenz-client-weather[dev-mkdocs,dev-noxfile,dev-pytest]",
 ]
-dev-noxfile = [
-  "nox == 2025.2.9",
-  "frequenz-repo-config[lib] == 0.12.3",
-]
+dev-noxfile = ["nox == 2025.2.9", "frequenz-repo-config[lib] == 0.13.2"]
 dev-pylint = [
   # dev-pytest already defines a dependency to pylint because of the examples
   # For checking the noxfile, docs/ script, and tests
@@ -82,8 +79,8 @@ dev-pylint = [
 ]
 dev-pytest = [
   "pytest == 8.3.4",
-  "pylint == 3.3.4",       # We need this to check for the examples
-  "frequenz-repo-config[extra-lint-examples] == 0.12.3",
+  "pylint == 3.3.4", # We need this to check for the examples
+  "frequenz-repo-config[extra-lint-examples] == 0.13.2",
   "pytest-mock == 3.14.0",
   "pytest-asyncio == 0.25.3",
   "async-solipsism == 0.7",
