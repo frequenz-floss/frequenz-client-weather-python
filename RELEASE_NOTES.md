@@ -6,12 +6,10 @@
 
 ## Upgrading
 
-* The minimum `numpy` supported version is now 1.26.0 (this is to be compatible with Python 3.12).
+* This includes a major upgrade of `numpy` to v2.
 
 ## New Features
 
-* Add the client and cli from [frequenz-api-weather v0.11.1](https://github.com/frequenz-floss/frequenz-api-weather/releases/tag/v0.11.1).
-* Add support for the live RPC to the cli tool.
 * Add method to combine conversion from forecast to ndarray and resampling in one method.
 * Add support for Python 3.12.
 
