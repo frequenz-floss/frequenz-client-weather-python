@@ -6,12 +6,11 @@
 
 ## Upgrading
 
-* This includes a major upgrade of `numpy` to v2.
+<!-- Here goes notes on how to upgrade from previous versions, including deprecations and what they should be replaced with -->
 
 ## New Features
 
-* Add method to combine conversion from forecast to ndarray and resampling in one method.
-* Add support for Python 3.12.
+<!-- Here goes the main new features and examples or instructions on how to use them -->
 
 ## Bug Fixes
 
