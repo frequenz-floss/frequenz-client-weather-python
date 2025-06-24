@@ -6,7 +6,7 @@
 
 ## Upgrading
 
-* Add back support for numpy v1.26.4+ while keeping compatibility with numpy v2.
+* Widen dependency version range of `frequenz-client-base` to  `>= 0.9.0, < 0.12`.
 
 <!-- Here goes notes on how to upgrade from previous versions, including deprecations and what they should be replaced with -->
 
