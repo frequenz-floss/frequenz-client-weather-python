@@ -16,7 +16,7 @@ import numpy as np
 import pytest
 from _pytest.logging import LogCaptureFixture
 from frequenz.api.common.v1.location_pb2 import Location as LocationProto
-from frequenz.api.weather import weather_pb2
+from frequenz.api.weather.v1 import weather_pb2
 from google.protobuf.timestamp_pb2 import Timestamp
 from pytest import fixture
 
@@ -159,13 +159,13 @@ def forecastdata() -> (  # pylint: disable=too-many-locals
 
             # Create the Forecasts object for the current time
             forecast = weather_pb2.LocationForecast.Forecasts(
-                valid_at_ts=valid_ts, features=feature_forecasts
+                valid_time=valid_ts, features=feature_forecasts
             )
             forecasts.append(forecast)
 
         # Create the LocationForecast object for the current location
         location_forecast = weather_pb2.LocationForecast(
-            forecasts=forecasts, location=location, creation_ts=creation_ts
+            forecasts=forecasts, location=location, create_time=creation_ts
         )
         location_forecasts.append(location_forecast)
 
