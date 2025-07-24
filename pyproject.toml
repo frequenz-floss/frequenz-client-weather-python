@@ -28,11 +28,11 @@ requires-python = ">= 3.11, < 4"
 dependencies = [
   "typing-extensions >= 4.12.2, < 5",
   "numpy >= 1.26.4, < 3",
-  "frequenz-api-common >= 0.6.0, < 0.7.0",
-  "googleapis-common-protos >= 1.56.4, < 2",
+  "frequenz-api-common >= 0.8.0, < 0.9.0",
+  "googleapis-common-protos >= 1.70.0, < 2",
   "frequenz-channels >= 1.6.1, < 2",
-  "frequenz-client-base >= 0.9.0, < 0.12",
-  "frequenz-api-weather >= 0.12.0, < 0.13.0",
+  "frequenz-client-base >= 0.11.0, < 0.12",
+  "frequenz-api-weather >= 0.14.0, < 0.15.0",
 ]
 dynamic = ["version"]
 
