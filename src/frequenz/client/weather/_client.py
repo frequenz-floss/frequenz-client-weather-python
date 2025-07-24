@@ -5,16 +5,18 @@
 
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timedelta
+from typing import AsyncIterator
 
-from frequenz.api.weather import weather_pb2, weather_pb2_grpc
+from frequenz.api.weather.v1 import weather_pb2, weather_pb2_grpc
 from frequenz.channels import Receiver
 from frequenz.client.base.channel import ChannelOptions
 from frequenz.client.base.client import BaseApiClient
 from frequenz.client.base.exception import ClientNotConnected
 from frequenz.client.base.streaming import GrpcStreamBroadcaster
+from google.protobuf import timestamp_pb2
+from google.protobuf.duration_pb2 import Duration
 
-from ._historical_forecast_iterator import HistoricalForecastIterator
 from ._types import ForecastFeature, Forecasts, Location
 
 
@@ -98,22 +100,54 @@ class Client(BaseApiClient[weather_pb2_grpc.WeatherForecastServiceStub]):
             )
         return self._streams[stream_key].new_receiver()
 
-    def hist_forecast_iterator(
+    # pylint: disable=too-many-arguments, too-many-positional-arguments
+    async def stream_historical_forecast(
         self,
         locations: list[Location],
         features: list[ForecastFeature],
         start: datetime,
         end: datetime,
-    ) -> HistoricalForecastIterator:
+        offset: timedelta | None = None,
+        duration: timedelta | None = None,
+    ) -> AsyncIterator[Forecasts]:
         """Stream historical weather forecast data.
 
         Args:
             locations: locations to stream data for.
             features: features to stream data for.
-            start: start of the time range to stream data for.
-            end: end of the time range to stream data for.
+            start: start of the time range.
+            end: end of the time range.
+            offset: Determines how far into the future (from create_time) the forecast
+                window should start.
+            duration: Determines how long the window should last.
 
         Returns:
-            A channel receiver for weather forecast data.
+            An async iterator of forecast data.
         """
-        return HistoricalForecastIterator(self.stub, locations, features, start, end)
+        start_ts = timestamp_pb2.Timestamp()
+        start_ts.FromDatetime(start)
+        end_ts = timestamp_pb2.Timestamp()
+        end_ts.FromDatetime(end)
+        forecast_horizon = weather_pb2.ForecastHorizon()
+        if offset is not None:
+            forecast_horizon.offset.CopyFrom(
+                Duration(seconds=int(offset.total_seconds()))
+            )
+        if duration is not None:
+            forecast_horizon.duration.CopyFrom(
+                Duration(seconds=int(duration.total_seconds()))
+            )
+
+        request = weather_pb2.ReceiveHistoricalWeatherForecastRequest(
+            locations=(location.to_pb() for location in locations),
+            features=(feature.value for feature in features),
+            start_create_time=start_ts,
+            end_create_time=end_ts,
+            forecast_horizon=forecast_horizon,
+        )
+
+        async def forecast_generator() -> AsyncIterator[Forecasts]:
+            async for response in self.stub.ReceiveHistoricalWeatherForecast(request):
+                yield Forecasts.from_pb(response)
+
+        return forecast_generator()
