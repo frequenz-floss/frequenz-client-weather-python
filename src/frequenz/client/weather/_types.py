@@ -14,7 +14,7 @@ from dataclasses import dataclass
 
 import numpy as np
 from frequenz.api.common.v1 import location_pb2
-from frequenz.api.weather import weather_pb2
+from frequenz.api.weather.v1 import weather_pb2
 
 # Set up logging
 _logger = logging.getLogger(__name__)
@@ -135,11 +135,18 @@ class Location:
 class Forecasts:
     """Weather forecast data."""
 
-    _forecasts_pb: weather_pb2.ReceiveLiveWeatherForecastResponse
+    _forecasts_pb: typing.Union[
+        weather_pb2.ReceiveLiveWeatherForecastResponse,
+        weather_pb2.ReceiveHistoricalWeatherForecastResponse,
+    ]
 
     @classmethod
     def from_pb(
-        cls, forecasts: weather_pb2.ReceiveLiveWeatherForecastResponse
+        cls,
+        forecasts: typing.Union[
+            weather_pb2.ReceiveLiveWeatherForecastResponse,
+            weather_pb2.ReceiveHistoricalWeatherForecastResponse,
+        ],
     ) -> Forecasts:
         """Convert a protobuf Forecast message to Forecast object.
 
@@ -223,7 +230,7 @@ class Forecasts:
 
         for fc in first_location.forecasts:
             validity_times.append(
-                dt.datetime.fromtimestamp(fc.valid_at_ts.seconds, tz=dt.UTC)
+                dt.datetime.fromtimestamp(fc.valid_time.seconds, tz=dt.UTC)
             )
 
         return validity_times
@@ -297,7 +304,7 @@ class Forecasts:
                     for t_index, val_time in enumerate(
                         self._forecasts_pb.location_forecasts[0].forecasts
                     ):
-                        if req_validitiy_time == val_time.valid_at_ts.ToDatetime():
+                        if req_validitiy_time == val_time.valid_time.ToDatetime():
                             validity_times_indexes.append(t_index)
                             found = True
                             break
@@ -480,44 +487,6 @@ ForecastData = namedtuple(
 )
 
 
-@dataclass(frozen=True)
-class HistoricalForecasts:
-    """Historical weather forecast data."""
-
-    _forecasts_pb: weather_pb2.GetHistoricalWeatherForecastResponse
-
-    @classmethod
-    def from_pb(
-        cls, forecasts: weather_pb2.GetHistoricalWeatherForecastResponse
-    ) -> HistoricalForecasts:
-        """Convert a protobuf Forecast message to Forecast object.
-
-        Args:
-            forecasts: protobuf message with historical forecast data.
-
-        Returns:
-            Forecast object corresponding to the protobuf message.
-        """
-        return cls(_forecasts_pb=forecasts)
-
-    def flatten(
-        self,
-    ) -> list[ForecastData]:
-        """Flatten a Forecast object to a list of named tuples of data.
-
-        Returns:
-            List of named tuples with the flattened forecast data.
-
-        Raises:
-            ValueError: If the forecasts data is missing or invalid.
-        """
-        # check for empty forecasts data
-        if not self._forecasts_pb.location_forecasts:
-            raise ValueError("Forecast data is missing or invalid.")
-
-        return flatten(list(self._forecasts_pb.location_forecasts))
-
-
 def flatten(
     location_forecasts: list[weather_pb2.LocationForecast],
 ) -> list[ForecastData]:
@@ -544,10 +513,10 @@ def flatten(
                 # Create and append an instance of the named tuple instead of a plain tuple
                 data.append(
                     ForecastData(
-                        creation_ts=location_forecast.creation_ts.ToDatetime(),
+                        creation_ts=location_forecast.create_time.ToDatetime(),
                         latitude=location_forecast.location.latitude,
                         longitude=location_forecast.location.longitude,
-                        validity_ts=forecasts.valid_at_ts.ToDatetime(),
+                        validity_ts=forecasts.valid_time.ToDatetime(),
                         feature=ForecastFeature(feature_forecast.feature),
                         value=feature_forecast.value,
                     )

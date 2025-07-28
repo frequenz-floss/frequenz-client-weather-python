@@ -70,7 +70,7 @@ features = [ForecastFeature.TEMPERATURE_2_METRE, ForecastFeature.V_WIND_COMPONEN
 start = datetime(2024, 1, 1)
 end = datetime(2024, 1, 31)
 
-forecast_iterator = client.hist_forecast_iterator(
+forecast_iterator = await client.stream_historical_forecast(
     features=features, locations=locations, start=start, end=end
 )
 
@@ -79,7 +79,7 @@ flat_forecasts = [f.flatten() async for f in forecast_iterator]
 forecast_records = [record for batch in flat_forecasts for record in batch]
 
 # E.g. convert to DataFrame and sort
-forecast_df = pd.DataFrame(forecast_records).sort_values(["creation_ts", "validity_ts", "latitude", "longitude"])
+forecast_df = pd.DataFrame(forecast_records).sort_values(["create_time", "valid_time", "latitude", "longitude"])
 print(forecast_df)
 ```
 

@@ -84,8 +84,8 @@ async def run(  # pylint: disable=too-many-arguments
     service_address: str,
     location: tuple[float, float],
     feature_names: list[str],
-    start: datetime,
-    end: datetime,
+    start: datetime | None,
+    end: datetime | None,
     mode: str,
 ) -> None:
     """Run the client.
@@ -122,10 +122,11 @@ async def run(  # pylint: disable=too-many-arguments
     print("creation_ts,validity_ts,latitude,longitude,feature,value")
 
     if mode == "historical":
-        location_forecast_iterator = client.hist_forecast_iterator(
-            features=features, locations=locations, start=start, end=end
+        # ignore type error because start and end are not None in historical mode
+        iterator = await client.stream_historical_forecast(
+            features=features, locations=locations, start=start, end=end  # type: ignore[arg-type]
         )
-        async for forecasts in location_forecast_iterator:
+        async for forecasts in iterator:
             for fc in forecasts.flatten():
                 row = (
                     fc.creation_ts,
