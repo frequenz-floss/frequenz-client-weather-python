@@ -3,7 +3,7 @@
 
 [build-system]
 requires = [
-  "setuptools == 80.7.1",
+  "setuptools == 80.9.0",
   "setuptools_scm[toml] == 8.3.1",
   "frequenz-repo-config[lib] == 0.13.5",
 ]
@@ -45,7 +45,7 @@ email = "floss@frequenz.com"
 
 [project.optional-dependencies]
 dev-flake8 = [
-  "flake8 == 7.2.0",
+  "flake8 == 7.3.0",
   "flake8-docstrings == 1.7.0",
   "flake8-pyproject == 1.2.3", # For reading the flake8 config from pyproject.toml
   "pydoclint == 0.6.6",
@@ -65,7 +65,7 @@ dev-mkdocs = [
   "frequenz-repo-config[lib] == 0.13.5",
 ]
 dev-mypy = [
-  "mypy == 1.15.0",
+  "mypy == 1.17.1",
   "types-Markdown == 3.8.0.20250415",
   "types-protobuf == 6.30.2.20250703",
   # For checking the noxfile, docs/ script, and tests
@@ -78,7 +78,7 @@ dev-pylint = [
   "frequenz-client-weather[dev-mkdocs,dev-noxfile,dev-pytest]",
 ]
 dev-pytest = [
-  "pytest == 8.3.4",
+  "pytest == 8.4.1",
   "pylint == 3.3.7", # We need this to check for the examples
   "frequenz-repo-config[extra-lint-examples] == 0.13.5",
   "pytest-mock == 3.14.1",
