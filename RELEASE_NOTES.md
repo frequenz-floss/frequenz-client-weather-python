@@ -2,13 +2,4 @@
 
 ## Summary
 
-This release switches the historical RPC from pagination to streaming and updates dependencies.
-
-## Upgrading
-
-- The historical RPC now streams instead of using pagination.
-
-## New Features
-
-
-## Bug Fixes
+This release relaxes the API common dependency so it can work up to v1.0.0, as all v0.x versions should be compatible from v0.8.0 on.
