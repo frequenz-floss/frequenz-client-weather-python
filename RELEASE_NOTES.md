@@ -6,7 +6,7 @@
 
 ## Upgrading
 
-* Require datetime objects to be timezone-aware in upsampling function.
+* Require datetime objects to be timezone-aware in upsampling and ndarray method.
 
 <!-- Here goes notes on how to upgrade from previous versions, including deprecations and what they should be replaced with -->
 

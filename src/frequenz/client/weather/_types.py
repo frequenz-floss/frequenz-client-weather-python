@@ -246,7 +246,7 @@ class Forecasts:
         If any of the filters are None, all values for that parameter will be returned.
 
         Args:
-            validity_times: The validity times to filter by.
+            validity_times: The validity times to filter by (tz-aware).
             locations: The locations to filter by.
             features: The features to filter by.
 
@@ -292,12 +292,19 @@ class Forecasts:
 
             # get the val indexes of the proto for the filtered validity times
             if validity_times:
+                # We require tz-aware datetime objects to avoid ambiguity
+                if any(
+                    t.tzinfo is None or t.utcoffset() is None for t in validity_times
+                ):
+                    raise ValueError("All validity_times must be timezone-aware")
                 for req_validitiy_time in validity_times:
                     found = False
                     for t_index, val_time in enumerate(
                         self._forecasts_pb.location_forecasts[0].forecasts
                     ):
-                        if req_validitiy_time == val_time.valid_at_ts.ToDatetime():
+                        if req_validitiy_time == val_time.valid_at_ts.ToDatetime(
+                            dt.UTC
+                        ):
                             validity_times_indexes.append(t_index)
                             found = True
                             break
