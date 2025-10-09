@@ -108,9 +108,9 @@ def forecastdata() -> (  # pylint: disable=too-many-locals
         LocationProto(latitude=43.0, longitude=19.0, country_code="CA"),
     ]
     valid_times = [
-        datetime.fromisoformat("2024-01-01T01:00:00"),
-        datetime.fromisoformat("2024-01-01T02:00:00"),
-        datetime.fromisoformat("2024-01-01T03:00:00"),
+        datetime.fromisoformat("2024-01-01T01:00:00Z"),
+        datetime.fromisoformat("2024-01-01T02:00:00Z"),
+        datetime.fromisoformat("2024-01-01T03:00:00Z"),
     ]
     feature_list = [
         weather_pb2.ForecastFeature.FORECAST_FEATURE_U_WIND_COMPONENT_100_METRE,
@@ -188,18 +188,18 @@ class TestForecasts:
 
     """
 
-    valid_ts1 = datetime.fromisoformat("2024-01-01T01:00:00")
-    valid_ts2 = datetime.fromisoformat("2024-01-01T02:00:00")
-    valid_ts3 = datetime.fromisoformat("2024-01-01T03:00:00")
-    invalid_ts = datetime.fromisoformat("2024-01-02T03:00:00")
+    valid_ts1 = datetime.fromisoformat("2024-01-01T01:00:00Z")
+    valid_ts2 = datetime.fromisoformat("2024-01-01T02:00:00Z")
+    valid_ts3 = datetime.fromisoformat("2024-01-01T03:00:00Z")
+    invalid_ts = datetime.fromisoformat("2024-01-02T03:00:00Z")
 
     @pytest.fixture
     def sample_times(self) -> List[datetime]:
         """Fixture providing sample validity times."""
         return [
-            datetime.fromisoformat("2024-01-01T01:00:00"),
-            datetime.fromisoformat("2024-01-01T02:00:00"),
-            datetime.fromisoformat("2024-01-01T03:00:00"),
+            datetime.fromisoformat("2024-01-01T01:00:00Z"),
+            datetime.fromisoformat("2024-01-01T02:00:00Z"),
+            datetime.fromisoformat("2024-01-01T03:00:00Z"),
         ]
 
     def test_from_pb(
