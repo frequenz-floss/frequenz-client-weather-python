@@ -3,7 +3,7 @@
 
 """Test the Client class."""
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import AsyncGenerator
 from unittest.mock import AsyncMock, MagicMock
 
@@ -41,10 +41,10 @@ class TestClient:
     ) -> weather_pb2.ReceiveHistoricalWeatherForecastResponse:
         """Create a sample historical weather forecast response."""
         creation_ts = Timestamp()
-        creation_ts.FromDatetime(datetime(2024, 1, 1, 12, 0, 0))
+        creation_ts.FromDatetime(datetime(2024, 1, 1, 12, 0, 0, tzinfo=timezone.utc))
 
         valid_ts = Timestamp()
-        valid_ts.FromDatetime(datetime(2024, 1, 1, 13, 0, 0))
+        valid_ts.FromDatetime(datetime(2024, 1, 1, 13, 0, 0, tzinfo=timezone.utc))
 
         location = location_pb2.Location(
             latitude=42.0, longitude=18.0, country_code="US"
@@ -79,8 +79,8 @@ class TestClient:
         """Test basic functionality of the historical forecast of the client."""
         locations = [Location(latitude=42.0, longitude=18.0, country_code="US")]
         features = [ForecastFeature.TEMPERATURE_2_METRE]
-        start = datetime(2024, 1, 1, 12, 0, 0)
-        end = datetime(2024, 1, 1, 13, 0, 0)
+        start = datetime(2024, 1, 1, 12, 0, 0, tzinfo=timezone.utc)
+        end = datetime(2024, 1, 1, 13, 0, 0, tzinfo=timezone.utc)
 
         # Mock the gRPC stream to return our sample response
         async def mock_stream(
@@ -121,8 +121,8 @@ class TestClient:
         """Test the historical forecast method with multiple messages."""
         locations = [Location(latitude=42.0, longitude=18.0, country_code="US")]
         features = [ForecastFeature.TEMPERATURE_2_METRE]
-        start = datetime(2024, 1, 1, 12, 0, 0)
-        end = datetime(2024, 1, 1, 13, 0, 0)
+        start = datetime(2024, 1, 1, 12, 0, 0, tzinfo=timezone.utc)
+        end = datetime(2024, 1, 1, 13, 0, 0, tzinfo=timezone.utc)
 
         second_response = weather_pb2.ReceiveHistoricalWeatherForecastResponse()
         second_response.CopyFrom(sample_historical_response)
