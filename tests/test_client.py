@@ -28,12 +28,37 @@ class TestClient:
     @fixture
     def client(self, mock_stub: AsyncMock) -> Client:
         """Create a client with a mock stub."""
-        client = Client("test-server", connect=False)
+        client = Client(
+            "test-server",
+            auth_key="test-auth-key",
+            sign_secret="test-sign-secret",
+            connect=False,
+        )
         # pylint: disable=protected-access
         client._stub = mock_stub
         client._channel = MagicMock()
         # pylint: enable=protected-access
         return client
+
+    def test_init_requires_auth_key(self) -> None:
+        """Test that the client requires an auth key."""
+        with pytest.raises(TypeError, match="auth_key"):
+            # pylint: disable-next=missing-kwoa
+            Client(  # type: ignore[call-arg]
+                "test-server",
+                sign_secret="test-sign-secret",
+                connect=False,
+            )
+
+    def test_init_requires_sign_secret(self) -> None:
+        """Test that the client requires a signing secret."""
+        with pytest.raises(TypeError, match="sign_secret"):
+            # pylint: disable-next=missing-kwoa
+            Client(  # type: ignore[call-arg]
+                "test-server",
+                auth_key="test-auth-key",
+                connect=False,
+            )
 
     @fixture
     def sample_historical_response(

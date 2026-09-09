@@ -26,13 +26,15 @@ classifiers = [
 ]
 requires-python = ">= 3.11, < 4"
 dependencies = [
-  "typing-extensions >= 4.12.2, < 5",
+  "typing-extensions >= 4.13.0, < 5",
   "numpy >= 1.26.4, < 3",
-  "frequenz-api-common >= 0.8.0, < 1",
+  "frequenz-api-common >= 0.8.10, < 1",
   "googleapis-common-protos >= 1.70.0, < 2",
-  "frequenz-channels >= 1.6.1, < 2",
-  "frequenz-client-base >= 0.11.0, < 0.12",
+  "frequenz-channels >= 1.8.0, < 2",
+  "frequenz-client-base >= 0.11.2, < 0.12",
   "frequenz-api-weather >= 0.14.0, < 0.15.0",
+  "grpcio >= 1.81.0, < 2",
+  "protobuf >= 6.33.6, < 8",
 ]
 dynamic = ["version"]
 

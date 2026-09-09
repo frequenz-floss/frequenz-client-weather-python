@@ -44,6 +44,8 @@ from datetime import timedelta
 
 client = Client(
     service_address,
+    auth_key="<auth-key>",
+    sign_secret="<signing-secret>",
     channel_defaults=ChannelOptions(
         ssl=SslOptions(
             enabled=False,
@@ -114,11 +116,16 @@ async for forecast in stream:
 The package also provides a command line interface to get weather forecast data.
 Use `-h` to see the available options.
 
+The CLI also reads `WEATHER_API_URL`, `WEATHER_API_AUTH_KEY`, and
+`WEATHER_API_SIGN_SECRET` when the matching flags are omitted.
+
 ### Get historical weather forecast
 
 ```bash
 weather-cli \
     --url <service-address> \
+    --auth-key <auth-key> \
+    --sign-secret <signing-secret> \
     --location "40,15" \
     --feature U_WIND_COMPONENT_100_METRE \
     --start 2024-03-14 \
@@ -131,8 +138,9 @@ weather-cli \
 ```bash
 weather-cli \
     --url <service-address> \
+    --auth-key <auth-key> \
+    --sign-secret <signing-secret> \
     --location "40, 15" \
     --feature TEMPERATURE_2_METRE \
     --mode live
 ```
-
