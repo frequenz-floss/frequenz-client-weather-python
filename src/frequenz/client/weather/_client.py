@@ -23,10 +23,12 @@ from ._types import ForecastFeature, Forecasts, Location
 class Client(BaseApiClient[weather_pb2_grpc.WeatherForecastServiceStub]):
     """Weather forecast client."""
 
-    def __init__(
+    def __init__(  # pylint: disable=too-many-arguments
         self,
         server_url: str,
         *,
+        auth_key: str,
+        sign_secret: str,
         connect: bool = True,
         channel_defaults: ChannelOptions = ChannelOptions(),
     ) -> None:
@@ -34,6 +36,8 @@ class Client(BaseApiClient[weather_pb2_grpc.WeatherForecastServiceStub]):
 
         Args:
             server_url: The URL of the server to connect to.
+            auth_key: The API key to use when connecting to the service.
+            sign_secret: The secret to use when signing requests.
             connect: Whether to connect to the server as soon as a client instance is
                 created. If `False`, the client will not connect to the server until
                 [connect()][frequenz.client.base.client.BaseApiClient.connect] is
@@ -45,6 +49,8 @@ class Client(BaseApiClient[weather_pb2_grpc.WeatherForecastServiceStub]):
             weather_pb2_grpc.WeatherForecastServiceStub,
             connect=connect,
             channel_defaults=channel_defaults,
+            auth_key=auth_key,
+            sign_secret=sign_secret,
         )
         self._streams: dict[
             tuple[Location | ForecastFeature, ...],

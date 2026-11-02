@@ -5,6 +5,7 @@
 
 import argparse
 import asyncio
+import os
 from datetime import datetime, timedelta
 
 from frequenz.client.base.channel import ChannelOptions, KeepAliveOptions, SslOptions
@@ -19,7 +20,20 @@ def main() -> None:
     parser.add_argument(
         "--url",
         type=str,
+        default=os.environ.get("WEATHER_API_URL"),
         help="URL of the Weather service",
+    )
+    parser.add_argument(
+        "--auth-key",
+        type=str,
+        default=os.environ.get("WEATHER_API_AUTH_KEY"),
+        help="API auth key for authentication",
+    )
+    parser.add_argument(
+        "--sign-secret",
+        type=str,
+        default=os.environ.get("WEATHER_API_SIGN_SECRET"),
+        help="API signing secret for authentication",
     )
     parser.add_argument(
         "--mode",
@@ -56,6 +70,13 @@ def main() -> None:
 
     args = parser.parse_args()
 
+    if args.url is None:
+        parser.error("--url or WEATHER_API_URL is required")
+    if args.auth_key is None:
+        parser.error("--auth-key or WEATHER_API_AUTH_KEY is required")
+    if args.sign_secret is None:
+        parser.error("--sign-secret or WEATHER_API_SIGN_SECRET is required")
+
     # Validate arguments based on mode
     if args.mode == "historical":
         if args.start is None or args.end is None:
@@ -68,6 +89,8 @@ def main() -> None:
         asyncio.run(
             run(
                 service_address=args.url,
+                auth_key=args.auth_key,
+                sign_secret=args.sign_secret,
                 location=args.location,
                 feature_names=args.feature,
                 start=args.start,
@@ -79,9 +102,11 @@ def main() -> None:
         print("\nReceived interrupt, shutting down...")
 
 
-async def run(  # pylint: disable=too-many-arguments
+async def run(  # pylint: disable=too-many-arguments,too-many-locals
     *,
     service_address: str,
+    auth_key: str,
+    sign_secret: str,
     location: tuple[float, float],
     feature_names: list[str],
     start: datetime | None,
@@ -92,6 +117,8 @@ async def run(  # pylint: disable=too-many-arguments
 
     Args:
         service_address: service address
+        auth_key: API auth key
+        sign_secret: API signing secret
         location: location in lat, lon format
         feature_names: feature names
         start: start datetime (historical mode only)
@@ -100,6 +127,8 @@ async def run(  # pylint: disable=too-many-arguments
     """
     client = Client(
         service_address,
+        auth_key=auth_key,
+        sign_secret=sign_secret,
         channel_defaults=ChannelOptions(
             ssl=SslOptions(enabled=False),
             keep_alive=KeepAliveOptions(
