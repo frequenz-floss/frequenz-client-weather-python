@@ -2,22 +2,8 @@
 
 ## Summary
 
-<!-- Here goes a general summary of what this release is about -->
-
-The client now accepts `frequenz-channels` v2.0.0 and keeps support for v1 (`>= 1.6.1, < 3`).
+This release adds support for `frequenz-channels` v2.0.0, while still supporting v1 (`frequenz-channels >= 1.6.1, < 3`). It also requires timezone-aware timestamps where naive ones gave ambiguous results.
 
 ## Upgrading
 
-* Require datetime objects to be timezone-aware in upsampling and ndarray method.
-
-<!-- Here goes notes on how to upgrade from previous versions, including deprecations and what they should be replaced with -->
-
-## New Features
-
-<!-- Here goes the main new features and examples or instructions on how to use them -->
-
-## Bug Fixes
-
-<!-- Here goes notable bug fixes that are worth a special mention or explanation -->
-
-This release relaxes the API common dependency so it can work up to v1.0.0, as all v0.x versions should be compatible from v0.8.0 on.
+* `Forecasts.to_ndarray_vlf()` (`validity_times`) and `Forecasts.upsample_vlf()` (`validity_times` and `target_times`) now raise a `ValueError` for timezone-naive datetimes. Naive datetimes were ambiguous: `upsample_vlf()` treated them as local time. Pass timezone-aware datetimes, for example in UTC.
