@@ -4,6 +4,8 @@
 
 <!-- Here goes a general summary of what this release is about -->
 
+The client now accepts `frequenz-channels` v2.0.0 and keeps support for v1 (`>= 1.6.1, < 3`).
+
 ## Upgrading
 
 * Require datetime objects to be timezone-aware in upsampling and ndarray method.
